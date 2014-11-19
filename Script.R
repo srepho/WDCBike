@@ -3,6 +3,7 @@ library(dplyr)
 library(caret)
 library(forecast)
 library(lubridate)
+library(chron)
 
 train<-read.csv("E:/kaggle/Bike/WDCBike/train.csv", header=T)
 test<-read.csv("E:/kaggle/Bike/WDCBike/test.csv", header=T)
@@ -16,11 +17,20 @@ test1<- test1 %>%
     count=NA
   )
 
+foo<-as.POSIXct(Total$datetime[1], "%Y-%m-%d %H:%M:%S", tz="UTC")
 
 
-Total<-rbind(train, test)
+format(Total$datetime[1], format="%Y-%m-%d %H:%M:%S")
+
+goo<-ymd_hms(train$datetime[1])
+
+fdo<-parse_date_time(Total$datetime[1], "%Y %m %d %H %M %S")
+
+Total$dt<-as.chron(Total$datetime)
+
+Total<-rbind(train, test1)
 
 
-ggplot(train, )
+ggplot(Total, aes(x=dt, y=count)) + geom_line() + scale_x_datetime()
 
 
