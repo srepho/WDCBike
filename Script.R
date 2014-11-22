@@ -33,4 +33,7 @@ Total<-rbind(train, test1)
 
 ggplot(Total, aes(x=dt, y=count)) + geom_line() + scale_x_datetime()
 
-
+dat <- data.frame( fruit=c("Apple", "Apple", "Orange", "Orange", "Orange", "Orange",
+                           "Orange", "Pear", "Pear", "Pear"), variable=c("Present", "Absent",
+                                                                         "Present", "Present", "Present", "Present", "Absent", "Absent",
+                                                                         "Absent", "Present") ) 
